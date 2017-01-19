@@ -18,5 +18,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaSeconds) override;
 
+	UFUNCTION(BlueprintCallable, Category = "Octree")
+		AActor* PreIntialize(AActor* A, FBox R);
+
 
 };

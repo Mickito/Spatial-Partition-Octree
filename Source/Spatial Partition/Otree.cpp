@@ -8,17 +8,24 @@ Otree::Otree()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
-AActor* Otree::PreIntialize(AActor* Actor, FBox Region)
+AActor* Otree::PreIntialize(AActor* actor, FBox region)
 {
 	AActor* TempActor = NULL;
 
-	if (Region.IsInside(Actor->GetActorLocation()))
+	if (region.IsInside(actor->GetActorLocation()))
 	{
-		TempActor = Actor;
+		TempActor = actor;
 	}
 
 	return TempActor;
 }
+
+void Otree::Initialize(TArray<AActor*> actors, FBox region)
+{
+	Actors = actors;
+	Region = region;
+}
+
 
 void Otree::BeginPlay()
 {
@@ -29,4 +36,8 @@ void Otree::BeginPlay()
 void Otree::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
+
+void Otree::BuildTree()
+{
 }

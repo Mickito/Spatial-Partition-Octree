@@ -10,7 +10,13 @@ class CUSTOM_API AOtree : public AActor
 
 public:
 
+	TArray<AActor*> Actors;
+	FBox Region;
+	TArray<FBox, TFixedAllocator<8>> subdivideBox;
+
 	Otree();
+
+	void Initialize(TArray<AActor*> actor, FBox region);
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -19,7 +25,8 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Octree")
-		AActor* PreIntialize(AActor* A, FBox R);
+		AActor* PreIntialize(AActor* actors, FBox region);
 
-
+	UFUNCTION(BlueprintCallable, Category = "Octree")
+		void BuildTree();
 };
